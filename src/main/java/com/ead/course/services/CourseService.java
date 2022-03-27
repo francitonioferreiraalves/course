@@ -1,11 +1,14 @@
 package com.ead.course.services;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.ead.course.models.CourseModel;
 import com.ead.course.models.UserModel;
+import com.ead.course.specifications.SpecificationTemplate.CourseSpec;
 
 public interface CourseService {
 	void delete(CourseModel courseModel);
@@ -14,7 +17,7 @@ public interface CourseService {
 
 	Optional<CourseModel> findById(UUID courseId);
 
-	List<CourseModel> findAll();
+	Page<CourseModel> findAll(CourseSpec spec, Pageable pageable);
 
 	boolean existsByCourseAndUser(UUID courseId, UUID userId);
 

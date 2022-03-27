@@ -1,11 +1,8 @@
 package com.ead.course.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 
 import com.ead.course.models.CourseModel;
 import com.ead.course.models.UserModel;
@@ -17,7 +14,7 @@ public interface CourseService {
 
 	Optional<CourseModel> findById(UUID courseId);
 
-	Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable);
+	List<CourseModel> findAll();
 
 	boolean existsByCourseAndUser(UUID courseId, UUID userId);
 

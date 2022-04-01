@@ -20,7 +20,6 @@ import com.ead.course.repositories.CourseRepository;
 import com.ead.course.repositories.CourseUserRepository;
 import com.ead.course.repositories.LessonRepository;
 import com.ead.course.repositories.ModuleRepository;
-import com.ead.course.repositories.UserRepository;
 import com.ead.course.services.CourseService;
 
 @Service
@@ -34,9 +33,6 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	LessonRepository lessonRepository;
-
-	@Autowired
-	UserRepository userRepository;
 
 	@Autowired
 	CourseUserRepository courseUserRepository;

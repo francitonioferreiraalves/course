@@ -13,7 +13,6 @@ import com.ead.course.models.CourseModel;
 import com.ead.course.models.CourseUserModel;
 import com.ead.course.models.LessonModel;
 import com.ead.course.models.ModuleModel;
-import com.ead.course.models.UserModel;
 
 import net.kaczmarzyk.spring.data.jpa.domain.Equal;
 import net.kaczmarzyk.spring.data.jpa.domain.Like;
@@ -25,11 +24,6 @@ public class SpecificationTemplate {
 	@And({ @Spec(path = "courseLevel", spec = Equal.class), @Spec(path = "courseStatus", spec = Equal.class),
 			@Spec(path = "name", spec = Like.class) })
 	public interface CourseSpec extends Specification<CourseModel> {
-	}
-
-	@And({ @Spec(path = "email", spec = Like.class), @Spec(path = "fullName", spec = Like.class),
-			@Spec(path = "userStatus", spec = Equal.class), @Spec(path = "userType", spec = Equal.class) })
-	public interface UserSpec extends Specification<UserModel> {
 	}
 
 	@Spec(path = "title", spec = Like.class)
@@ -60,12 +54,11 @@ public class SpecificationTemplate {
 		};
 	}
 
-	  public static Specification<CourseModel> courseUserId(final UUID userId) {
-	        return (root, query, cb) -> {
-	            query.distinct(true);
-	            Join<CourseModel, CourseUserModel> courseProd = root.join("coursesUsers");
-	            return cb.equal(courseProd.get("userId"), userId);
-	        };
-	    }
-
+	public static Specification<CourseModel> courseUserId(final UUID userId) {
+		return (root, query, cb) -> {
+			query.distinct(true);
+			Join<CourseModel, CourseUserModel> courseProd = root.join("coursesUsers");
+			return cb.equal(courseProd.get("userId"), userId);
+		};
+	}
 }
